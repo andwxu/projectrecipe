@@ -17,7 +17,7 @@ class App extends React.Component {
   componentWillMount(e) {
   }
 
-  onWheel(e) {
+  handleScroll(e) {
     e.preventDefault();
     let container = this.scrollRef.current;
     let containerScrollPosition = this.scrollRef.current.scrollLeft;
@@ -36,7 +36,7 @@ class App extends React.Component {
                 Recipes
           </header>
 
-          <section className="card-wrapper" onWheel={this.onWheel.bind(this)} ref={this.scrollRef}>
+          <section className="card-wrapper" onScroll={this.handleScroll.bind(this)} ref={this.scrollRef}>
             <Card src={img1}></Card>
             <Card src={img2}></Card>
           </section>
