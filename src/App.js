@@ -23,7 +23,7 @@ class App extends React.Component {
     let containerScrollPosition = this.scrollRef.current.scrollLeft;
     container.scrollTo({
         top: 0,
-        left: containerScrollPosition + e.deltaY,
+        left: containerScrollPosition + e.deltaX,
         behaviour: 'smooth' //if you want smooth scrolling
     })
   }
