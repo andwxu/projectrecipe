@@ -37,15 +37,15 @@ class App extends React.Component {
       })
     }
 
-    function onMouseMove(event) {
+    function onPointerMove(event) {
       moveAt(event.pageX);
     }
-  
-    document.addEventListener('mousemove', onMouseMove);
 
-    document.onmouseup = function() {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.onmouseup = null;
+    document.addEventListener('pointermove', onPointerMove);
+
+    document.onpointerup = function() {
+      document.removeEventListener('pointermove', onPointerMove);
+      document.onpointerup = null;
     };
   }
 
@@ -57,7 +57,9 @@ class App extends React.Component {
                 Recipes
           </header>
             
-          <section className="card-wrapper" onMouseDown={this.handleScroll.bind(this)} ref={this.scrollRef}>
+          <section className="card-wrapper" 
+          onPointerDown={this.handleScroll.bind(this)}
+          ref={this.scrollRef}>
             <Card src={img1} name="Black Bean Burgers"></Card>
             <Card src={img2} name="Chicken Thighs with Creamy Mustard Sauce"></Card>
             <Card src={img3} name="Southern Red Velvet Cake"></Card>
