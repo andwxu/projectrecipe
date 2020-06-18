@@ -13,6 +13,7 @@ import img6 from './peach.jpg';
 import img7 from './cream.jpg';
 import img8 from './tomato.jpg';
 import search from './glass.png'
+import progress from './progress.png';
 
 class App extends React.Component {
   constructor() {
@@ -43,6 +44,8 @@ class App extends React.Component {
 
     document.addEventListener('pointermove', onPointerMove);
 
+    e.preventDefault();
+
     document.onpointerup = function() {
       document.removeEventListener('pointermove', onPointerMove);
       document.onpointerup = null;
@@ -60,10 +63,10 @@ class App extends React.Component {
           <section className="card-wrapper" 
           onPointerDown={this.handleScroll.bind(this)}
           ref={this.scrollRef}>
-            <Card src={img1} name="Black Bean Burgers"></Card>
-            <Card src={img2} name="Chicken Thighs with Creamy Mustard Sauce"></Card>
-            <Card src={img3} name="Southern Red Velvet Cake"></Card>
-            <Card src={img4} name="Perfect Roast Chicken"></Card>
+            <Card src={img1} name="Black Bean Burgers" time="45min" calories="170 cal"></Card>
+            <Card src={img2} name="Chicken Thighs with Creamy Mustard Sauce" time="45min" calories="250 cal"></Card>
+            <Card src={img3} name="Southern Red Velvet Cake" time="1 hr" calories="620 cal"></Card>
+            <Card src={img4} name="Perfect Roast Chicken" time="2 hr 10 min" calories="210 cal"></Card>
           </section>
           
         </Row>
@@ -76,6 +79,12 @@ class App extends React.Component {
           <List src={img7}name="Almond and Raspberry Swirl Ice Cream"></List>
           <List src={img8}name="Picnic Tomatoes"></List>
         </section>
+
+        <Row>
+          <div className="footer">
+            <img src={progress} />
+          </div>
+        </Row>
       </Container>
     );
   }

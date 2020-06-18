@@ -5,6 +5,7 @@ class Card extends React.Component {
     constructor() {
         super();
         this.text = React.createRef();
+        this.time = React.createRef();
     }
 
     isItDark(imageSrc,callback) {
@@ -50,9 +51,13 @@ class Card extends React.Component {
 
     componentDidMount() {
         let recipeText = this.text.current;
+        let timeText = this.time.current;
         this.isItDark(this.props.src, function(dark) {
             if (!dark) {
                 recipeText.style.color = "black";
+            } else {
+                timeText.style.backgroundColor = "rgb(221, 221, 221)";
+                timeText.style.color = "#222222";
             }
         });
     }
@@ -62,6 +67,10 @@ class Card extends React.Component {
             <div className="card">
                 <img src={this.props.src}/>
                 <span><h1 ref={this.text}>{this.props.name}</h1></span>
+                <div className="info-wrapper">
+                    <span className="time"><h2 ref={this.time}>{this.props.time}</h2></span>
+                    <span className="calories"><h2>{this.props.calories}</h2></span>
+                </div>
             </div>
         );
     }
