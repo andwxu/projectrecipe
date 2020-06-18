@@ -1,0 +1,13 @@
+div .card {
+    display: inline-block;
+    max-height: 100%;
+    max-width: 85%;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+div > img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}

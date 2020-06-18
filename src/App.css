@@ -1,83 +1,28 @@
 * {
-    padding: 0;
-    margin: 0;
     background-color: #f7f7f7;
 }
 
 html, body {
     width: 100%;
+    height: 100%;
 }
 
 header {
+    margin-left: 5px;
     font-size: 40px;
     font-weight: bold;
-    grid-row: 1;
-    grid-column: 2;
+    overflow: hidden;
 }
 
-.container-fluid {
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    grid-template-rows: 60px 1fr;
-}
-
-.recipes {
-    grid-column: 2;
-    list-style-type: none;
-}
-
-li {
-    border-bottom: solid;
-    border-width: 1px;
+.card-wrapper {
+    width: 100%;
     display: flex;
-    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow: hidden;
 }
 
-li img {
-    margin: 15px 0;
-    width: 125px;
-    height: 125px;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-li span {
-    font-size: 30px;
-    padding-left: 15px;
-}
-
-.boxes {
-    display: flex;
-    margin-left: auto;
-    align-items: flex-end;
-}
-
-.boxes span {
-    padding: 1px 5px;
-    border-style: solid;
-    border-radius: 5px;
-    border-width: 1px;
-    border-color: #3f3f3f;
-    font-size: 20px;
-}
-
-.boxes :nth-child(2) {
-    margin-left: 15px;
-    background-color: #80ed99;
-}
-
-@media only screen and (max-width: 950px) {
-    .boxes {
-        flex-direction: row;
-        align-self: top;
-        float: left;
-    }
-
-    .name {
-        position: relative;
-    }
-
-    .container-fluid {
-        grid-template-columns: 0 1fr 0;
-    }
+.card {
+    flex: 0 0 auto;
+    border: none !important;
 }
