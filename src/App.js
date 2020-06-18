@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   handleScroll(e) {
-    e.preventDefault();
+
     let container = this.scrollRef.current;
     let currentMousePosition = e.pageX;
     let containerScrollPosition = this.scrollRef.current.scrollLeft;
@@ -44,7 +44,6 @@ class App extends React.Component {
 
     document.addEventListener('pointermove', onPointerMove);
 
-    e.preventDefault();
 
     document.onpointerup = function() {
       document.removeEventListener('pointermove', onPointerMove);
