@@ -1,0 +1,25 @@
+.wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.wrapper img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100px;
+    z-index: 2;
+}
+
+.wrapper h3 {
+    font-size: 1.2rem;
+    position: absolute;
+    bottom: 25px;
+    left: 2px;
+    margin-bottom: 0;
+    z-index: 4;
+    cursor: pointer;
+}

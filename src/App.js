@@ -3,10 +3,16 @@ import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Card from './Card.js';
+import List from './List.js';
 import img1 from './burger.jpeg';
 import img2 from './chicken.jpeg';
 import img3 from './cake.jpeg';
 import img4 from './roast.jpeg';
+import img5 from './coconut.jpg';
+import img6 from './peach.jpg';
+import img7 from './cream.jpg';
+import img8 from './tomato.jpg';
+import search from './glass.png'
 
 class App extends React.Component {
   constructor() {
@@ -20,12 +26,27 @@ class App extends React.Component {
   handleScroll(e) {
     e.preventDefault();
     let container = this.scrollRef.current;
+    let currentMousePosition = e.pageX;
     let containerScrollPosition = this.scrollRef.current.scrollLeft;
-    container.scrollTo({
+
+    function moveAt(newX) {
+      container.scrollTo({
         top: 0,
-        left: containerScrollPosition + e.deltaX,
-        behaviour: 'smooth' //if you want smooth scrolling
-    })
+        left: containerScrollPosition + currentMousePosition - newX,
+        behaviour: 'smooth'
+      })
+    }
+
+    function onMouseMove(event) {
+      moveAt(event.pageX);
+    }
+  
+    document.addEventListener('mousemove', onMouseMove);
+
+    document.onmouseup = function() {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.onmouseup = null;
+    };
   }
 
   render() {
@@ -35,12 +56,24 @@ class App extends React.Component {
           <header>
                 Recipes
           </header>
-
-          <section className="card-wrapper" onScroll={this.handleScroll.bind(this)} ref={this.scrollRef}>
-            <Card src={img1}></Card>
-            <Card src={img2}></Card>
+            
+          <section className="card-wrapper" onMouseDown={this.handleScroll.bind(this)} ref={this.scrollRef}>
+            <Card src={img1} name="Black Bean Burgers"></Card>
+            <Card src={img2} name="Chicken Thighs with Creamy Mustard Sauce"></Card>
+            <Card src={img3} name="Southern Red Velvet Cake"></Card>
+            <Card src={img4} name="Perfect Roast Chicken"></Card>
           </section>
+          
         </Row>
+
+        <h2>Trending</h2>
+        <div className="search"><img src={search}/><p>Search</p></div>
+        <section className="list-wrapper">
+          <List src={img5}name="Coconut and Lemongrass Steak Skewers"></List>
+          <List src={img6}name="Brown Butter Peach Cobbler"></List>
+          <List src={img7}name="Almond and Raspberry Swirl Ice Cream"></List>
+          <List src={img8}name="Picnic Tomatoes"></List>
+        </section>
       </Container>
     );
   }
