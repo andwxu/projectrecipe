@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
+import FlickList from 'react-flick-list'
 import Card from './Card.js';
 import List from './List.js';
 import img1 from './burger.jpeg';
@@ -19,16 +20,17 @@ class App extends React.Component {
   constructor() {
     super();
     this.scrollRef = React.createRef();
-  }
-
-  componentWillMount(e) {
+    console.log('start');
   }
 
   handleScroll(e) {
-
+    let startTime = (new Date).getTime();
     let container = this.scrollRef.current;
+    let T = this;
     let currentMousePosition = e.pageX;
     let containerScrollPosition = this.scrollRef.current.scrollLeft;
+    let containerNewPosition = containerScrollPosition;
+    let containerShift = 0;
 
     function moveAt(newX) {
       container.scrollTo({
@@ -36,18 +38,45 @@ class App extends React.Component {
         left: containerScrollPosition + currentMousePosition - newX,
         behaviour: 'smooth'
       })
+      containerNewPosition = T.scrollRef.current.scrollLeft;
+      containerShift = containerNewPosition - containerScrollPosition;
+      console.log(containerShift);
     }
 
     function onPointerMove(event) {
       moveAt(event.pageX);
     }
 
+    function continueScroll(shift) {
+      //constants
+      let velocityCutoff = 1.5;
+      let shiftModifier = 10;
+
+      let velocity = containerShift / shift;
+      console.log(velocity);
+      if (Math.abs(velocity) > velocityCutoff) {
+        if (velocity < 0) {
+          container.scrollTo({
+            top: 0,
+            left: containerNewPosition - velocity * shiftModifier,
+            beahvior: 'smooth'
+          })
+        }
+        container.scrollTo({
+          top: 0,
+          left: containerNewPosition + velocity * shiftModifier,
+          beahvior: 'smooth'
+        })
+      }
+    }
+
     document.addEventListener('pointermove', onPointerMove);
-
-
     document.onpointerup = function() {
       document.removeEventListener('pointermove', onPointerMove);
       document.onpointerup = null;
+      let endTime = (new Date).getTime();
+      let shift = endTime - startTime;
+      continueScroll(shift);
     };
   }
 
