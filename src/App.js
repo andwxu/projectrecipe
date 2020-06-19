@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
+import FlickList from 'react-flick-list'
 import Card from './Card.js';
 import List from './List.js';
 import img1 from './burger.jpeg';
@@ -19,13 +20,10 @@ class App extends React.Component {
   constructor() {
     super();
     this.scrollRef = React.createRef();
-  }
-
-  componentWillMount(e) {
+    console.log('start');
   }
 
   handleScroll(e) {
-
     let container = this.scrollRef.current;
     let currentMousePosition = e.pageX;
     let containerScrollPosition = this.scrollRef.current.scrollLeft;
@@ -33,7 +31,7 @@ class App extends React.Component {
     function moveAt(newX) {
       container.scrollTo({
         top: 0,
-        left: containerScrollPosition + currentMousePosition - newX,
+        left: containerScrollPosition + (currentMousePosition - newX) * 1.5,
         behaviour: 'smooth'
       })
     }
@@ -43,7 +41,6 @@ class App extends React.Component {
     }
 
     document.addEventListener('pointermove', onPointerMove);
-
 
     document.onpointerup = function() {
       document.removeEventListener('pointermove', onPointerMove);
@@ -66,6 +63,7 @@ class App extends React.Component {
             <Card src={img2} name="Chicken Thighs with Creamy Mustard Sauce" time="45min" calories="250 cal"></Card>
             <Card src={img3} name="Southern Red Velvet Cake" time="1 hr" calories="620 cal"></Card>
             <Card src={img4} name="Perfect Roast Chicken" time="2 hr 10 min" calories="210 cal"></Card>
+            <div className="spacing"></div>
           </section>
           
         </Row>
