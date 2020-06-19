@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
-import FlickList from 'react-flick-list'
 import Card from './Card.js';
 import List from './List.js';
 import img1 from './burger.jpeg';
